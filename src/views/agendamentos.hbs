@@ -1,0 +1,34 @@
+<!-- views/agendamentos.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agendamentos</title>
+</head>
+<body>
+    <h1>Lista de Agendamentos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Serviço</th>
+                <th>Veículo</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each agendamentos}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.cliente.nome}}</td>
+                <td>{{this.servico.titulo}}</td>
+                <td>{{this.veiculo.tipo}}</td>
+                <td>{{this.data}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+</html>

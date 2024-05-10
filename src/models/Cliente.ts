@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/database";
+import Agendamento from "./Agendamento";
 
 class Cliente extends Model {
   public id!: number;
@@ -26,7 +27,10 @@ Cliente.init(
   {
     sequelize,
     modelName: "Cliente",
+    tableName: "clientes",
   }
 );
+
+Cliente.hasMany(Agendamento, { foreignKey: "clienteId", as: "agendamentos" });
 
 export default Cliente;

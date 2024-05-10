@@ -1,5 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/database";
+import Cliente from "./Cliente";
+import Servico from "./Servico";
+import Veiculo from "./Veiculo";
 
 class Agendamento extends Model {
   public id!: number;
@@ -19,26 +22,14 @@ Agendamento.init(
     clienteId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "clientes",
-        key: "id",
-      },
     },
     servicoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "servicos",
-        key: "id",
-      },
     },
     veiculoId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "veiculos",
-        key: "id",
-      },
     },
     data: {
       type: DataTypes.DATE,
@@ -51,5 +42,9 @@ Agendamento.init(
     tableName: "agendamentos",
   }
 );
+
+Agendamento.belongsTo(Cliente, { foreignKey: "clienteId", as: "clientes" });
+Agendamento.belongsTo(Servico, { foreignKey: "servicoId", as: "servicos" });
+Agendamento.belongsTo(Veiculo, { foreignKey: "veiculoId", as: "veiculos" });
 
 export default Agendamento;

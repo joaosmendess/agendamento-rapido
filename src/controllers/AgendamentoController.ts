@@ -1,5 +1,8 @@
 import Agendamento from "../models/Agendamento";
 import { Request, Response } from "express";
+import Cliente from "../models/Cliente";
+import Servico from "../models/Servico";
+import Veiculo from "../models/Veiculo";
 
 export const criarAgendamento = async (req: Request, res: Response) => {
   try {
@@ -16,8 +19,14 @@ export const criarAgendamento = async (req: Request, res: Response) => {
 
 export const listarAgendamentos = async (req: Request, res: Response) => {
   try {
-    const agendamentos = await Agendamento.findAll();
-    res.json(agendamentos);
+    const agendamentos = await Agendamento.findAll({
+      include: [
+        { model: Cliente, as: "clientes" },
+        { model: Servico, as: "servicos" },
+        { model: Veiculo, as: "veiculos" },
+      ],
+    });
+    res.render("agendamentos", { agendamentos });
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).send(error.message);
@@ -26,7 +35,6 @@ export const listarAgendamentos = async (req: Request, res: Response) => {
     }
   }
 };
-
 export const atualizarAgendamento = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
