@@ -43,8 +43,5 @@ Agendamento.init(
   }
 );
 
-Agendamento.belongsTo(Cliente, { foreignKey: "clienteId", as: "clientes" });
-Agendamento.belongsTo(Servico, { foreignKey: "servicoId", as: "servicos" });
-Agendamento.belongsTo(Veiculo, { foreignKey: "veiculoId", as: "veiculos" });
 
 export default Agendamento;

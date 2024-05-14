@@ -27,5 +27,5 @@ Veiculo.init(
 );
 
 Veiculo.hasMany(Agendamento, { foreignKey: "veiculoId", as: "agendamentos" });
-
+// Veiculo.hasMany(Agendamento)
 export default Veiculo;
