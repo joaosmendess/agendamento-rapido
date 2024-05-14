@@ -1,8 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/database";
-import Cliente from "./Cliente";
-import Servico from "./Servico";
-import Veiculo from "./Veiculo";
+
 
 class Agendamento extends Model {
   public id!: number;
